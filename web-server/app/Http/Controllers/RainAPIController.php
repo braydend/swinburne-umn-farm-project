@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Rain;
 
 class RainAPIController extends Controller
 {
-    function store($request){
+    function store(Request $request){
       //Store the data to the Database
       $rain = new Rain;
       //hardcoded to test
-      $rain->location_id = '2';
+      $rain->location_id = $request['location_id'];
       $rain->rainfall = $request['rainfall'];
       $rain->save();
 
-      return response()->json($article, 201);
+      return response()->json($request, 201);
     }
 }

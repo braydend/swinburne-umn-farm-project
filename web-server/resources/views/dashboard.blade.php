@@ -9,7 +9,7 @@
     <p>Display the most recent data from all sensors</p>
     <p>maybe graphs?</p>
     @foreach($locations as $location)
-      <h2>{{ $location->name }}</h2>
+      <h2>{{ $location->name }}</h2 >
       @if($location->Acidity->count() > 0)
         <p>Acidity: {{ $location->Acidity->first()->acidity  }}</p>
       @endif

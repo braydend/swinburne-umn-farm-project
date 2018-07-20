@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTemperatureTable extends Migration
+class CreateHumidityTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateTemperatureTable extends Migration
      */
     public function up()
     {
-        Schema::create('temperature', function (Blueprint $table) {
+        Schema::create('humidity', function (Blueprint $table) {
             $table->increments('id');
-            $table->float('temperature', 5, 2);
+            $table->integer('location_id')->unsigned();
+            $table->foreign('location_id')->references('id')->on('locations');
+            $table->integer('humidity')->unsigned();
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateTemperatureTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('temperature');
+        Schema::dropIfExists('humidity');
     }
 }

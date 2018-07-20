@@ -25,7 +25,7 @@ def check_battery_status():
     time.sleep(DELAY_TIME)
 
 try:
-    threading._start_new_thread( check_battery_status, ('Battery_Thread', 2) )
+    threading._start_new_thread( check_battery_status )
 except:
     # change this to output to web server, printing won't work in the actual system
     print('Cannot start new thread, contact system administrator!')

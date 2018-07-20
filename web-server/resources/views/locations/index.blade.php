@@ -1,30 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', $location->name)
 
 @section('content')
 <div class="row">
   <div class="col-md">
-    <div class="row">
-      <div class="col-md logos">
-        <img src="{{ URL::to('images/umn_logo.jpg') }}" alt="UMN logo" style="margin-right: 10%;"/>
-        <img src="{{ URL::to('images/swinburne_logo.png') }}" alt="Swinburne logo"/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md title">
-        <h2 class="display-2">Swinburne UMN Farm</h2>
-      </div>
-    </div>
+    <a href="{{ URL::to('/') }}">Back home</a>
   </div>
 </div>
 <div class="row">
   <div class="col-md">
-    <h4 class="display-4 center">Latest Data</h4>
+    <h4 class="display-4 center">{{ $location->name }}</h4>
   </div>
 </div>
 <div class="row">
-    @foreach($locations as $location)
     <div class="col-md-4">
       <h2>{{ $location->name }}</h2 >
       @if($location->Acidity->count() > 0)
@@ -45,8 +34,6 @@
       @if($location->Temperature->count() > 0)
         <p>Temperature: {{ $location->Temperature->sortByDesc('id')->first()->temperature  }}</p>
       @endif
-      <a href="{{ URL::to('/location/' . $location->id) }}" class="btn btn-primary">View all data</a>
       </div>
-    @endforeach
 </div>
 @endsection
